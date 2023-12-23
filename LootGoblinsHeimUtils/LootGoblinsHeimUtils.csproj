@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JotunnModStub</RootNamespace>
-    <AssemblyName>JotunnModStub</AssemblyName>
+    <AssemblyName>LootGoblinsHeimUtils</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -49,6 +49,12 @@
     <Reference Include="0Harmony, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HarmonyX.2.9.0\lib\net45\0Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="assembly_utils, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\assembly_utils_publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="assembly_valheim, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\assembly_valheim_publicized.dll</HintPath>
+    </Reference>
     <Reference Include="Jotunn, Version=2.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JotunnLib.2.15.0\lib\net462\Jotunn.dll</HintPath>
     </Reference>
@@ -83,16 +89,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
-    <Compile Include="JotunnModStub.cs" />
+    <Compile Include="LootGoblinsHeimUtilsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Package\plugins\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\manifest.json" />
