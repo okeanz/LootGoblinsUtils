@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hooks\Hooks.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="LootGoblinsHeimUtilsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,9 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Package\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Libs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
