@@ -90,11 +90,19 @@
   <ItemGroup>
     <Compile Include="Hooks\Hooks.cs" />
     <Compile Include="Pieces\BlueberryBush.cs" />
-    <Compile Include="Pieces\BushConfiguration.cs" />
-    <Compile Include="Pieces\BushUtils.cs" />
-    <Compile Include="Pieces\FarmersTable.cs" />
+    <Compile Include="Pieces\CloudberryBush.cs" />
+    <Compile Include="Pieces\Configurators\BushConfiguration.cs" />
+    <Compile Include="Pieces\Configurators\BushUtils.cs" />
+    <Compile Include="Pieces\Configurators\Configurable.cs" />
+    <Compile Include="Pieces\Configurators\PlantConfiguration.cs" />
+    <Compile Include="Pieces\Configurators\PlantRecipeSwapper.cs" />
+    <Compile Include="Pieces\Dandelion.cs" />
     <Compile Include="Pieces\Mushroom.cs" />
+    <Compile Include="Pieces\MushroomYellow.cs" />
     <Compile Include="Pieces\RaspberryBush.cs" />
+    <Compile Include="Pieces\Saplings.cs" />
+    <Compile Include="Pieces\Stations\FarmersTable.cs" />
+    <Compile Include="Pieces\Stations\FarmersTableExtensionT1.cs" />
     <Compile Include="Pieces\ThistleBush.cs" />
     <Compile Include="PluginConfiguration.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
@@ -120,6 +128,7 @@
   </PropertyGroup>
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(OutputPath)LootGoblinsHeimUtils.dll" DestinationFolder="C:\Users\User\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\dev\BepInEx\plugins" />
+    <Copy SourceFiles="$(OutputPath)LootGoblinsHeimUtils.dll" DestinationFolder="C:\GitHub\LootGoblinsHeim\package" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

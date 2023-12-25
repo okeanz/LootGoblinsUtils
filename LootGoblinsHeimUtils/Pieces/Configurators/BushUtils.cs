@@ -4,10 +4,12 @@ using Jotunn;
 using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
+using LootGoblinsUtils.Pieces.Stations;
 using UnityEngine;
+using Logger = Jotunn.Logger;
 using Object = UnityEngine.Object;
 
-namespace LootGoblinsUtils.Pieces;
+namespace LootGoblinsUtils.Pieces.Configurators;
 
 public static class BushUtils
 {
@@ -18,6 +20,8 @@ public static class BushUtils
     private static GameObject _blueberryBushPrefab;
     public static GameObject BlueberryBushModel;
     public static Sprite BlueberryBushIcon;
+
+    public static VisualsGroup CloudberryVisuals;
 
     private static GameObject _thistlePrefab;
     public static GameObject thistleModel;
@@ -35,6 +39,9 @@ public static class BushUtils
         BlueberryBushModel = _blueberryBushPrefab.FindDeepChild("model").gameObject;
         BlueberryBushIcon = RenderManager.Instance.Render(_blueberryBushPrefab, RenderManager.IsometricRotation);
 
+        CloudberryVisuals = new VisualsGroup("CloudberryBush", "high");
+        CloudberryVisuals.Prefab.FindDeepChild("Berrys").parent = CloudberryVisuals.Model.transform;
+        // Object.Instantiate(PrefabManager.Instance.CreateClonedPrefab("Berrys_Copied", berrys), CloudberryVisuals.Model.transform);
 
         _thistlePrefab = PrefabManager.Instance.GetPrefab("Pickable_Thistle");
         thistleModel = _thistlePrefab.FindDeepChild("visual").gameObject;
@@ -44,15 +51,30 @@ public static class BushUtils
         MeadIcon = PrefabManager.Instance.GetPrefab("MeadBaseTasty").GetComponent<ItemDrop>().m_itemData.GetIcon();
     }
 
+    public struct VisualsGroup
+    {
+        public GameObject Prefab;
+        public GameObject Model;
+        public Sprite Icon;
+
+        public VisualsGroup(string prefabName, string modelChildName)
+        {
+            Prefab = PrefabManager.Instance.GetPrefab(prefabName);
+            if (Prefab == null)
+                Logger.LogWarning($"VisualsGroup.prefab[{prefabName}] is null");
+            Model = Prefab.FindDeepChild(modelChildName).gameObject;
+            if (Model == null)
+                Logger.LogWarning($"VisualsGroup.Model[{modelChildName} is null");
+            Icon = RenderManager.Instance.Render(Prefab, RenderManager.IsometricRotation);
+            if (Icon == null)
+                Logger.LogWarning($"VisualsGroup.Icon[{prefabName} is null");
+        }
+    }
+
     public static GameObject SetupNewModel(GameObject targetModel, Transform targetParentTransform)
     {
         var newModel = Object.Instantiate(targetModel, targetParentTransform);
         newModel.layer = LayerMask.NameToLayer("Default_small");
-
-        var collider = newModel.GetComponent<CapsuleCollider>() ??
-                       newModel.AddComponent<CapsuleCollider>();
-        collider.radius = 1.6f;
-        collider.isTrigger = true;
 
         return newModel;
     }
@@ -91,13 +113,14 @@ public static class BushUtils
     }
 
     public static void MakeFertilizer(string localizedName, string itemName, string description,
-        RequirementConfig[] requirements)
+        RequirementConfig[] requirements, int minStationLevel)
     {
         var config = new ItemConfig
         {
             Name = localizedName,
             Description = description,
             CraftingStation = FarmersTable.TableName,
+            MinStationLevel = minStationLevel,
             Icons = new[] {MeadIcon}
         };
         config.Requirements = requirements;

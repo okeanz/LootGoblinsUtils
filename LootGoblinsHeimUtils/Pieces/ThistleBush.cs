@@ -1,4 +1,5 @@
 using Jotunn.Configs;
+using LootGoblinsUtils.Pieces.Configurators;
 
 namespace LootGoblinsUtils.Pieces;
 
@@ -8,7 +9,7 @@ public static class ThistleBush
     {
         new BushConfiguration
         {
-            TargetItemName = "Thistle",
+            Name = "Thistle",
             LocalizedBushName = "Чертополох",
             ReadyObjectName = "bees",
             FertilizerIcon = BushUtils.thistleIcon,

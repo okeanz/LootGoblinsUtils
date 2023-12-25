@@ -2,6 +2,7 @@
 using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
+using LootGoblinsUtils.Pieces.Configurators;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
@@ -10,33 +11,23 @@ namespace LootGoblinsUtils.Pieces;
 public static class Mushroom
 {
     public const string PieceName = "$piece_mushroom_LG";
+
     public static void Configure()
     {
-        var mushroomItemPrefab = PrefabManager.Instance.GetPrefab("Mushroom");
-        var icon = mushroomItemPrefab.GetComponent<ItemDrop>().m_itemData.GetIcon();
+        LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("Russian", PieceName, "Гриб");
+        LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("English", PieceName, "Mushroom");
         
-        var pc = new PieceConfig
+        new PlantConfiguration
         {
-            Name = Localization.instance.Localize(PieceName),
-            PieceTable = PieceTables.Cultivator,
-            Category = PieceCategories.Misc,
-            Icon = icon,
-            Requirements = new []
+            Name = PieceName,
+            IconItemDropPrefabName = "Mushroom",
+            PickablePrefabName = "Pickable_Mushroom",
+            PieceRecipe = new[]
             {
-                new RequirementConfig("Mushroom", 1)
+                new RequirementConfig("Mushroom", 1),
+                new RequirementConfig("Resin", 2)
             }
-        };
 
-        var mushroomPrefab = PrefabManager.Instance.CreateClonedPrefab(PieceName, "Pickable_Carrot");
-        mushroomPrefab.AddComponent<Piece>();
-
-
-        var pickable = mushroomPrefab.GetComponent<Pickable>();
-        Logger.LogWarning($"LOGSHIT {pickable.m_respawnTimeMinutes}");
-
-        var newPiece = new CustomPiece(mushroomPrefab, false, pc);
-
-
-        PieceManager.Instance.AddPiece(newPiece);
+        }.Configure();
     }
 }

@@ -1,4 +1,5 @@
 using Jotunn.Configs;
+using LootGoblinsUtils.Pieces.Configurators;
 
 namespace LootGoblinsUtils.Pieces;
 
@@ -8,7 +9,7 @@ public static class BlueberryBush
     {
         new BushConfiguration
         {
-            TargetItemName = "Blueberries",
+            Name = "Blueberries",
             LocalizedBushName = "Куст черники",
             ReadyObjectName = "Berrys",
             FertilizerIcon = BushUtils.BlueberryBushIcon,

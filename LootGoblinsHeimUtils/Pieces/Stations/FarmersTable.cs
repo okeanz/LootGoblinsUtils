@@ -2,13 +2,12 @@
 using Jotunn;
 using Jotunn.Configs;
 using Jotunn.Entities;
-using Jotunn.Extensions;
 using Jotunn.Managers;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 using Object = UnityEngine.Object;
 
-namespace LootGoblinsUtils.Pieces;
+namespace LootGoblinsUtils.Pieces.Stations;
 
 public static class FarmersTable
 {
@@ -19,9 +18,8 @@ public static class FarmersTable
     {
         try
         {
-            Logger.LogWarning($"{TableName} constructing...");
             InnerSetup();
-            Logger.LogWarning($"{TableName} constructing completed");
+            Logger.LogInfo($"{TableName} constructing completed");
         }
         catch (Exception e)
         {
@@ -32,6 +30,12 @@ public static class FarmersTable
 
     private static void InnerSetup()
     {
+        LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("Russian", TableName, "Столик фермера");
+        LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("English", TableName, "Farmers Table");
+        
+        LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("Russian", PieceCategory, "Фермерство");
+        LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("English", PieceCategory, "Farming");
+        
         var pestlePrefab = PrefabManager.Instance.GetPrefab("cauldron_ext5_mortarandpestle");
         var pestleModel = pestlePrefab.FindDeepChild("new").gameObject;
         var farmersTableIcon = pestlePrefab.GetComponent<Piece>().m_icon;

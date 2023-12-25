@@ -1,48 +1,49 @@
-﻿using System;
-using Jotunn;
+﻿using Jotunn;
 using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
 using UnityEngine;
+using Logger = Jotunn.Logger;
 
-namespace LootGoblinsUtils.Pieces;
+namespace LootGoblinsUtils.Pieces.Configurators;
 
-public class BushConfiguration
+public class BushConfiguration : Configurable
 {
-    public string TargetItemName;
     public string LocalizedBushName;
     public string ReadyObjectName;
+    public float ColliderRadius;
     public Sprite FertilizerIcon;
     public RequirementConfig[] BushRequirements;
     public GameObject NewBushModel;
     public FertilizerConfig[] FertilizerConfigs;
 
 
-    private string BushName => $"piece_{TargetItemName}Bush_LG";
-    private string FertilizerTierName(int tier) => $"{TargetItemName}FertilizerT{tier}_LG";
+    private string BushName => $"piece_{Name}Bush_LG";
+    private string FertilizerTierName(int tier) => $"{Name}FertilizerT{tier}_LG";
 
-    public void Configure()
-    {
-        try
-        {
-            Jotunn.Logger.LogWarning($"{TargetItemName} constructing...");
-            InnerSetup();
-            Jotunn.Logger.LogWarning($"{TargetItemName} constructing completed");
-        }
-        catch (Exception e)
-        {
-            Jotunn.Logger.LogError($"{TargetItemName} constructing failed");
-            Jotunn.Logger.LogError(e);
-        }
-    }
-    
-    private void InnerSetup()
+
+    protected override void Setup()
     {
         var newPiece = MakeNewPiece();
         var modelParent = BushUtils.CleanupModel(newPiece);
+        Logger.LogInfo($"{BushName} CleanupModel complete");
         var newModel = BushUtils.SetupNewModel(NewBushModel, modelParent);
-        var readyObject = newModel.FindDeepChild(ReadyObjectName).gameObject;
-        readyObject.SetActive(false);
+        Logger.LogInfo($"{BushName} SetupNewModel complete");
+
+        var collider = newModel.GetComponent<CapsuleCollider>() ??
+                       newModel.AddComponent<CapsuleCollider>();
+        collider.radius = ColliderRadius == 0 ? 1.6f : ColliderRadius;
+        collider.isTrigger = true;
+
+        var readyObject = newModel.FindDeepChild(ReadyObjectName)?.gameObject;
+        if (readyObject == null)
+        {
+            Logger.LogWarning($"{BushName}.readyObject == null");
+        }
+        else
+        {
+            readyObject.SetActive(false);
+        }
 
         BushUtils.ConfigureFermenter(newPiece.PiecePrefab.GetComponent<Fermenter>(), readyObject);
 
@@ -51,7 +52,7 @@ public class BushConfiguration
 
         MakeFertilizers();
     }
-    
+
     private CustomPiece MakeNewPiece()
     {
         var pc = new PieceConfig
@@ -73,30 +74,33 @@ public class BushConfiguration
                 m_noClipping = false
             }
         };
+        Logger.LogInfo($"{BushName} newPiece setup complete");
+        
         return newPiece;
     }
-    
+
     private void MakeFertilizers()
     {
         for (var i = 0; i < FertilizerConfigs.Length; i++)
         {
             var config = FertilizerConfigs[i];
-            
+
             BushUtils.MakeFertilizer(
                 localizedName: config.LocalizedName,
-                itemName: FertilizerTierName(i+1),
+                itemName: FertilizerTierName(i + 1),
                 description: config.LocalizedDescription,
-                requirements: config.RecipeRequirements
+                requirements: config.RecipeRequirements,
+                minStationLevel: i+1
             );
-            
+
             var conversion = new FermenterConversionConfig
             {
-                ToItem = TargetItemName,
-                FromItem = FertilizerTierName(i+1),
+                ToItem = Name,
+                FromItem = FertilizerTierName(i + 1),
                 Station = BushName,
                 ProducedItems = config.AmountProduced
             };
-            
+
             ItemManager.Instance.AddItemConversion(new CustomItemConversion(conversion));
         }
     }

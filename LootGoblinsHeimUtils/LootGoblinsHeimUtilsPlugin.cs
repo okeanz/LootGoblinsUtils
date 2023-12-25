@@ -9,6 +9,8 @@ using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
 using LootGoblinsUtils.Pieces;
+using LootGoblinsUtils.Pieces.Configurators;
+using LootGoblinsUtils.Pieces.Stations;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -38,28 +40,30 @@ namespace LootGoblinsUtils
             
             PluginConfiguration.InitConfigs(this);
             
-            Localization.AddTranslation("Russian", FarmersTable.TableName, "Столик фермера");
-            Localization.AddTranslation("English", FarmersTable.TableName, "Farmers Table");
-
             PrefabManager.OnVanillaPrefabsAvailable += Setup;
 
         }
 
         private void Setup()
         {
-            Jotunn.Logger.LogWarning("------------ LootGoblinsHeimUtilsPlugin start ------------");
+            Jotunn.Logger.LogInfo("------------ LootGoblinsHeimUtilsPlugin start ------------");
             BushUtils.CacheDependencies();
             
             FarmersTable.Configure();
+            FarmersTableExtensionT1.Configure();
             
             RaspberryBush.Setup();
             BlueberryBush.Setup();
+            CloudberryBush.Setup();
             ThistleBush.Setup();
             
             Mushroom.Configure();
+            MushroomYellow.Configure();
+            Dandelion.Configure();
 
+            Saplings.ReplaceRecipes();
 
-            Jotunn.Logger.LogWarning("------------ LootGoblinsHeimUtilsPlugin end ------------");
+            Jotunn.Logger.LogInfo("------------ LootGoblinsHeimUtilsPlugin end ------------");
 
             PrefabManager.OnVanillaPrefabsAvailable -= Setup;
         }

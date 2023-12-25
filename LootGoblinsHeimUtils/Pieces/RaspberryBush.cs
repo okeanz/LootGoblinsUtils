@@ -3,6 +3,7 @@ using Jotunn;
 using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
+using LootGoblinsUtils.Pieces.Configurators;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -14,7 +15,7 @@ public static class RaspberryBush
     {
         new BushConfiguration
         {
-            TargetItemName = "Raspberry",
+            Name = "Raspberry",
             LocalizedBushName = "Малиновый куст",
             ReadyObjectName = "Berrys",
             FertilizerIcon = BushUtils.RaspberryBushIcon,
