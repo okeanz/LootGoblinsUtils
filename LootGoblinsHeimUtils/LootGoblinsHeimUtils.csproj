@@ -89,6 +89,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hooks\Hooks.cs" />
+    <Compile Include="Pieces\BlueberryBush.cs" />
+    <Compile Include="Pieces\BushConfiguration.cs" />
+    <Compile Include="Pieces\BushUtils.cs" />
+    <Compile Include="Pieces\FarmersTable.cs" />
+    <Compile Include="Pieces\Mushroom.cs" />
+    <Compile Include="Pieces\RaspberryBush.cs" />
+    <Compile Include="Pieces\ThistleBush.cs" />
+    <Compile Include="PluginConfiguration.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="LootGoblinsHeimUtilsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,6 +118,9 @@
       $(BuildDependsOn);
     </BuildDependsOn>
   </PropertyGroup>
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(OutputPath)LootGoblinsHeimUtils.dll" DestinationFolder="C:\Users\User\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\dev\BepInEx\plugins" />
+  </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>

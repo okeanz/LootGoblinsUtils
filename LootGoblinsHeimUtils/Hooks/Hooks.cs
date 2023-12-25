@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using Jotunn;
 using Jotunn.Configs;
 using Jotunn.Entities;
@@ -11,7 +12,7 @@ namespace LootGoblinsUtils.Hooks;
 public static class Hooks
 {
     [HarmonyPatch(typeof(Fermenter), nameof(Fermenter.GetHoverText))]
-    public static class Bushes
+    public static class FermenterHoverText
     {
         public static bool Prefix(Fermenter __instance, ref string __result)
         {
@@ -25,11 +26,14 @@ public static class Hooks
 
             var piece = __instance.GetComponent<Piece>();
 
+            var remaining = (int) (__instance.m_fermentationDuration - __instance.GetFermentationTime());
+            var timespan = TimeSpan.FromSeconds(remaining);
+            
             __result = __instance.GetStatus() switch
             {
                 Fermenter.Status.Empty =>
                     Localization.instance.Localize($"{piece.m_name} ( Пусто )\n[<color=yellow><b>$KEY_Use</b></color>] Добавить удобрение"),
-                Fermenter.Status.Fermenting => $"{piece.m_name} ( <color=blue>Рост</color> )",
+                Fermenter.Status.Fermenting => $"{piece.m_name} ( <color=blue>Рост</color> )\nОсталось: {timespan.Minutes} мин. {timespan.Seconds} сек.",
                 Fermenter.Status.Ready => $"{piece.m_name} ( <color=green>Готово</color> )",
                 _ => piece.m_name
             };
@@ -45,18 +49,6 @@ public static class Hooks
         static bool Prefix(Fermenter __instance)
         {
             return !__instance.gameObject.name.Contains("_LG");
-        }
-    }
-    
-    [HarmonyPatch(typeof(WearNTear), nameof(WearNTear.OnPlaced))]
-    public static class WearNTearPlacedColliderIsTriggerSwap
-    {
-        static void Postfix(WearNTear __instance)
-        {
-            if(!__instance.gameObject.name.Contains("_LG"))
-                return;
-
-            // __instance.GetComponentInChildren<CapsuleCollider>().isTrigger = true;
         }
     }
 }
