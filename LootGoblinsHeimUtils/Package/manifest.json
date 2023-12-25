@@ -1,10 +1,10 @@
 ﻿{
   "name": "LootGoblinsHeimUtils",
   "description": "",
-  "version_number": "0.0.1",
+  "version_number": "1.0.0",
   "website_url": "",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2202",
-    "ValheimModding-Jotunn-2.15.0"
+    "ValheimModding-Jotunn-2.15.2"
   ]
 }

@@ -23,7 +23,7 @@ namespace LootGoblinsUtils
     {
         public const string PluginGuid = "com.lootgoblinsheim.utils";
         public const string PluginName = "LootGoblinsHeimUtils";
-        public const string PluginVersion = "0.0.1";
+        public const string PluginVersion = "1.0.0";
         
         private readonly Harmony _harmony = new(PluginGuid);
         
