@@ -9,6 +9,7 @@ public static class PluginConfiguration
     public static ConfigEntry<float> FertilizingDuration;
     public static ConfigEntry<float> PlantGrowMinDuration;
     public static ConfigEntry<float> PlantGrowMaxDuration;
+    public static ConfigEntry<bool> ReliableBlockToggle;
 
     public static void InitConfigs(BaseUnityPlugin plugin)
     {
@@ -17,7 +18,7 @@ public static class PluginConfiguration
         FertilizingDuration = plugin.Config.Bind(
             section,
             "FertilizingDuration",
-            1500f,
+            4500f,
             new ConfigDescription(
                 "Длительность роста продуктов",
                 new AcceptableValueRange<float>(0, float.MaxValue),
@@ -41,6 +42,16 @@ public static class PluginConfiguration
             new ConfigDescription(
                 "Максимальная длительность роста растений",
                 new AcceptableValueRange<float>(0, float.MaxValue),
+                isAdminOnly)
+        );
+        
+        ReliableBlockToggle = plugin.Config.Bind(
+            section,
+            "ReliableBlockToggle",
+            true,
+            new ConfigDescription(
+                "Во включенном состоянии снижение урона блокированием работает даже если получено оглушение, что делает блокирование более предсказуемым",
+                null,
                 isAdminOnly)
         );
     }

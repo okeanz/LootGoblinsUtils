@@ -89,7 +89,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Creatures\CreatureDB.cs" />
+    <Compile Include="Creatures\ExplorerHelpers.cs" />
+    <Compile Include="Creatures\FinePrefabs.cs" />
     <Compile Include="Hooks\Hooks.cs" />
+    <Compile Include="Hooks\MonoUpdaterPatch.cs" />
+    <Compile Include="Hooks\ProfilePatcher.cs" />
     <Compile Include="Pieces\BlueberryBush.cs" />
     <Compile Include="Pieces\CloudberryBush.cs" />
     <Compile Include="Pieces\Configurators\BushConfiguration.cs" />
@@ -109,6 +114,7 @@
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="LootGoblinsHeimUtilsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Submods\ReliableBlock\Hook.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -128,7 +134,7 @@
     </BuildDependsOn>
   </PropertyGroup>
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(OutputPath)LootGoblinsHeimUtils.dll" DestinationFolder="C:\Users\User\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\dev\BepInEx\plugins" />
+    <Copy SourceFiles="$(OutputPath)LootGoblinsHeimUtils.dll" DestinationFolder="C:\Users\User\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\dev1\BepInEx\plugins" />
     <Copy SourceFiles="$(OutputPath)LootGoblinsHeimUtils.dll" DestinationFolder="C:\GitHub\LootGoblinsHeim\package" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
