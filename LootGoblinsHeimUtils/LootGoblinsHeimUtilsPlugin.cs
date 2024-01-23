@@ -11,29 +11,29 @@ using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
+using LootGoblinsUtils.Configuration;
+using LootGoblinsUtils.Conquest;
 using LootGoblinsUtils.Creatures;
 using LootGoblinsUtils.Hooks;
-using LootGoblinsUtils.Pieces;
-using LootGoblinsUtils.Pieces.Configurators;
-using LootGoblinsUtils.Pieces.Stations;
+using LootGoblinsUtils.Submods.Farming;
+using LootGoblinsUtils.Utils;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 namespace LootGoblinsUtils
 {
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-    [BepInDependency(Jotunn.Main.ModGuid)]
+    [BepInDependency(Main.ModGuid)]
     [NetworkCompatibility(CompatibilityLevel.NotEnforced, VersionStrictness.None)]
     internal class LootGoblinsHeimUtilsPlugin : BaseUnityPlugin
     {
         public const string PluginGuid = "com.lootgoblinsheim.utils";
         public const string PluginName = "LootGoblinsHeimUtils";
-        public const string PluginVersion = "1.0.1";
+        public const string PluginVersion = "2.0.0";
 
         private readonly Harmony _harmony = new(PluginGuid);
 
-        public static CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
+        public static readonly CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
 
         public static bool IsServer => SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null;
 
@@ -43,10 +43,14 @@ namespace LootGoblinsUtils
         public static bool OptimizationsEnabled;
         public static bool LoggingEnabled;
 
+        public static ConfigFile CFG;
+
         private void Awake()
         {
             Jotunn.Logger.LogInfo("LootGoblinsHeimUtilsPlugin has landed ");
-
+            CFG = Config;
+            Blueprints.Init();
+            
             ToggleShortcut = new KeyboardShortcut(KeyCode.LeftShift, KeyCode.T);
             ToggleLoggingShortcut = new KeyboardShortcut(KeyCode.LeftShift, KeyCode.Y);
 
@@ -56,9 +60,11 @@ namespace LootGoblinsUtils
             ProfilePatcher.Patch(_harmony);
 
             PluginConfiguration.InitConfigs(this);
+            FarmingSetup.Init();
+            CreatureDB.Init();
 
-            PrefabManager.OnVanillaPrefabsAvailable += Setup;
-            // CreatureManager.OnVanillaCreaturesAvailable += CreatureManagerOnOnVanillaCreaturesAvailable;
+            if(PluginConfiguration.Conquest.ConquestFeature.Value)
+                ConquestFeature.Load();
         }
 
 
@@ -81,36 +87,6 @@ namespace LootGoblinsUtils
         {
             if (!OptimizationsEnabled) return;
             ProfilePatcher.LateUpdate();
-        }
-
-        private void CreatureManagerOnOnVanillaCreaturesAvailable()
-        {
-            CreatureDB.LoadCreatures();
-            CreatureManager.OnVanillaCreaturesAvailable -= CreatureManagerOnOnVanillaCreaturesAvailable;
-        }
-
-        private void Setup()
-        {
-            Jotunn.Logger.LogInfo("------------ LootGoblinsHeimUtilsPlugin start ------------");
-            BushUtils.CacheDependencies();
-
-            FarmersTable.Configure();
-            FarmersTableExtensionT1.Configure();
-
-            RaspberryBush.Setup();
-            BlueberryBush.Setup();
-            CloudberryBush.Setup();
-            ThistleBush.Setup();
-
-            Mushroom.Configure();
-            MushroomYellow.Configure();
-            Dandelion.Configure();
-
-            Saplings.ReplaceRecipes();
-
-            Jotunn.Logger.LogInfo("------------ LootGoblinsHeimUtilsPlugin end ------------");
-
-            PrefabManager.OnVanillaPrefabsAvailable -= Setup;
         }
     }
 }

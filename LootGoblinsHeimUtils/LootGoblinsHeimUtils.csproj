@@ -87,34 +87,77 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e">
+      <HintPath>..\packages\YamlDotNet.11.2.1\lib\net45\YamlDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ConquestConfiguration.cs" />
+    <Compile Include="Configuration\PluginConfiguration.cs" />
+    <Compile Include="Conquest\Components\Spawners\Boar\SpawnerBoarsRaid.cs" />
+    <Compile Include="Conquest\Components\Spawners\Boar\SpawnerBoarsT1.cs" />
+    <Compile Include="Conquest\Components\Spawners\DefendersSpawner.cs" />
+    <Compile Include="Conquest\Components\Spawners\Neck\SpawnerNeckRaid.cs" />
+    <Compile Include="Conquest\Components\Spawners\Neck\SpawnerNeckT1.cs" />
+    <Compile Include="Conquest\ConquestFeature.cs" />
+    <Compile Include="Conquest\Items\GreenCore.cs" />
+    <Compile Include="Conquest\Items\ItemsLoader.cs" />
+    <Compile Include="Conquest\Locations\LocationLoader.cs" />
+    <Compile Include="Conquest\Locations\LocationPatches.cs" />
+    <Compile Include="Conquest\Locations\T1CoresLoaders\T1CoreBoars.cs" />
+    <Compile Include="Conquest\Locations\T1CoresLoaders\T1CoreNecks.cs" />
+    <Compile Include="Conquest\Pieces\Core\CoreComponent.cs" />
+    <Compile Include="Conquest\Pieces\Core\CorePiece.cs" />
+    <Compile Include="Conquest\Pieces\DefenderTotem\DefenderTotemComponent.cs" />
+    <Compile Include="Conquest\Pieces\DefenderTotem\DefenderTotemPiece.cs" />
+    <Compile Include="Conquest\Pieces\Ghost\ConquestGhost.cs" />
+    <Compile Include="Conquest\Pieces\Ghost\GhostCoreBoar.cs" />
+    <Compile Include="Conquest\Pieces\Ghost\GhostCoreNeck.cs" />
+    <Compile Include="Conquest\Pieces\PiecesLoader.cs" />
+    <Compile Include="Conquest\TerminalCommands\CoresList.cs" />
+    <Compile Include="Creatures\Attacks\AttackInfo.cs" />
+    <Compile Include="Creatures\Attacks\Scripts.cs" />
     <Compile Include="Creatures\CreatureDB.cs" />
     <Compile Include="Creatures\ExplorerHelpers.cs" />
     <Compile Include="Creatures\FinePrefabs.cs" />
-    <Compile Include="Hooks\Hooks.cs" />
+    <Compile Include="Creatures\NeckDragon.cs" />
+    <Compile Include="Creatures\NeckShaman.cs" />
+    <Compile Include="Creatures\StormBoar.cs" />
+    <Compile Include="Creatures\StormHog.cs" />
     <Compile Include="Hooks\MonoUpdaterPatch.cs" />
     <Compile Include="Hooks\ProfilePatcher.cs" />
-    <Compile Include="Pieces\BlueberryBush.cs" />
-    <Compile Include="Pieces\CloudberryBush.cs" />
-    <Compile Include="Pieces\Configurators\BushConfiguration.cs" />
-    <Compile Include="Pieces\Configurators\BushUtils.cs" />
-    <Compile Include="Pieces\Configurators\Configurable.cs" />
-    <Compile Include="Pieces\Configurators\PlantConfiguration.cs" />
-    <Compile Include="Pieces\Configurators\PlantRecipeSwapper.cs" />
-    <Compile Include="Pieces\Dandelion.cs" />
-    <Compile Include="Pieces\Mushroom.cs" />
-    <Compile Include="Pieces\MushroomYellow.cs" />
-    <Compile Include="Pieces\RaspberryBush.cs" />
-    <Compile Include="Pieces\Saplings.cs" />
-    <Compile Include="Pieces\Stations\FarmersTable.cs" />
-    <Compile Include="Pieces\Stations\FarmersTableExtensionT1.cs" />
-    <Compile Include="Pieces\ThistleBush.cs" />
-    <Compile Include="PluginConfiguration.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="LootGoblinsHeimUtilsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Submods\Farming\FarmingSetup.cs" />
+    <Compile Include="Submods\Farming\FarmingHooks.cs" />
+    <Compile Include="Submods\Farming\Pieces\BlueberryBush.cs" />
+    <Compile Include="Submods\Farming\Pieces\CloudberryBush.cs" />
+    <Compile Include="Submods\Farming\Pieces\Configurators\BushConfiguration.cs" />
+    <Compile Include="Submods\Farming\Pieces\Configurators\BushUtils.cs" />
+    <Compile Include="Submods\Farming\Pieces\Configurators\Configurable.cs" />
+    <Compile Include="Submods\Farming\Pieces\Configurators\PlantConfiguration.cs" />
+    <Compile Include="Submods\Farming\Pieces\Configurators\PlantRecipeSwapper.cs" />
+    <Compile Include="Submods\Farming\Pieces\Dandelion.cs" />
+    <Compile Include="Submods\Farming\Pieces\Mushroom.cs" />
+    <Compile Include="Submods\Farming\Pieces\MushroomYellow.cs" />
+    <Compile Include="Submods\Farming\Pieces\RaspberryBush.cs" />
+    <Compile Include="Submods\Farming\Pieces\Saplings.cs" />
+    <Compile Include="Submods\Farming\Pieces\Stations\FarmersTable.cs" />
+    <Compile Include="Submods\Farming\Pieces\Stations\FarmersTableExtensionT1.cs" />
+    <Compile Include="Submods\Farming\Pieces\ThistleBush.cs" />
     <Compile Include="Submods\ReliableBlock\Hook.cs" />
+    <Compile Include="Utils\Blueprint.cs" />
+    <Compile Include="Utils\Blueprints.cs" />
+    <Compile Include="Utils\CustomPieceExtensions.cs" />
+    <Compile Include="Utils\GameObjectExtensions.cs" />
+    <Compile Include="Utils\Loader.cs" />
+    <Compile Include="Utils\MonoExtensions.cs" />
+    <Compile Include="Utils\PieceEntry.cs" />
+    <Compile Include="Utils\SlowMono.cs" />
+    <Compile Include="Utils\StringExtension.cs" />
+    <Compile Include="Utils\TextureExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -125,6 +168,7 @@
     <None Include="Package\manifest.json" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Conquest\Locations\Blueprints\Relicv_Raven_V2.blueprint" />
     <Content Include="Package\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -134,7 +178,7 @@
     </BuildDependsOn>
   </PropertyGroup>
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(OutputPath)LootGoblinsHeimUtils.dll" DestinationFolder="C:\Users\User\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\dev1\BepInEx\plugins" />
+    <Copy SourceFiles="$(OutputPath)LootGoblinsHeimUtils.dll" DestinationFolder="C:\Users\User\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\dev1\BepInEx\plugins\Utils" />
     <Copy SourceFiles="$(OutputPath)LootGoblinsHeimUtils.dll" DestinationFolder="C:\GitHub\LootGoblinsHeim\package" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

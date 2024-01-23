@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using LootGoblinsUtils.Configuration;
 
 namespace LootGoblinsUtils.Submods.ReliableBlock;
 

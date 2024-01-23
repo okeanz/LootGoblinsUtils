@@ -206,9 +206,9 @@ public static class ProfilePatcher
             _lastUpdateLate = Time.time;
                 
             Logger.LogMessage("------------");
-            foreach (var keyValuePair in ProfilePatcher.UpdateTable
+            foreach (var keyValuePair in UpdateTable
                          .OrderByDescending(
-                             x => x.Value.Sum() / (x.Value.Count * ProfilePatcher.InstanceCounter[x.Key].Count)
+                             x => x.Value.Sum() / (x.Value.Count * InstanceCounter[x.Key].Count)
                          )
                          .Take(15))
             {

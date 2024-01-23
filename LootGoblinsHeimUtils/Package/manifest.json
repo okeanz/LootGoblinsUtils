@@ -5,6 +5,7 @@
   "website_url": "",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2202",
-    "ValheimModding-Jotunn-2.15.2"
+    "ValheimModding-Jotunn-2.15.2",
+    "ASharpPen-Spawn_That-1.2.8"
   ]
 }
