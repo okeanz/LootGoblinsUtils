@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LootGoblinsUtils.Creatures;
+namespace LootGoblinsUtils.Conquest.Creatures;
 
 public static class ExplorerHelpers
 {

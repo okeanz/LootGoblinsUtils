@@ -1,11 +1,10 @@
 ﻿using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
-using LootGoblinsUtils.Creatures.Attacks;
+using LootGoblinsUtils.Conquest.Creatures.Attacks;
 using LootGoblinsUtils.Utils;
-using UnityEngine;
 
-namespace LootGoblinsUtils.Creatures;
+namespace LootGoblinsUtils.Conquest.Creatures;
 
 public class NeckShaman
 {

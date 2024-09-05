@@ -1,13 +1,11 @@
-﻿using HarmonyLib;
-using Jotunn.Configs;
+﻿using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
-using LootGoblinsUtils.Creatures.Attacks;
+using LootGoblinsUtils.Conquest.Creatures.Attacks;
 using LootGoblinsUtils.Utils;
 using UnityEngine;
-using Logger = Jotunn.Logger;
 
-namespace LootGoblinsUtils.Creatures;
+namespace LootGoblinsUtils.Conquest.Creatures;
 
 public static class StormBoar
 {

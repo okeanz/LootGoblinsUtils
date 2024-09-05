@@ -10,11 +10,16 @@ public static class FarmingSetup
     public static void Init()
     {
         PrefabManager.OnVanillaPrefabsAvailable += Setup;
+        ItemManager.OnItemsRegistered += ObjectDbLoaded;
+    }
+
+    private static void ObjectDbLoaded()
+    {
+        HoePatch.Patch();
     }
 
     private static void Setup()
     {
-        Jotunn.Logger.LogInfo("------------ LootGoblinsHeimUtilsPlugin start ------------");
         BushUtils.CacheDependencies();
 
         FarmersTable.Configure();
@@ -30,8 +35,6 @@ public static class FarmingSetup
         Dandelion.Configure();
 
         Saplings.ReplaceRecipes();
-
-        Jotunn.Logger.LogInfo("------------ LootGoblinsHeimUtilsPlugin end ------------");
 
         PrefabManager.OnVanillaPrefabsAvailable -= Setup;
     }

@@ -3,7 +3,7 @@ using Jotunn.Managers;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
-namespace LootGoblinsUtils.Creatures.Attacks;
+namespace LootGoblinsUtils.Conquest.Creatures.Attacks;
 
 public class AttackInfo
 {

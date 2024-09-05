@@ -1,10 +1,6 @@
-﻿using HarmonyLib;
-using Jotunn.Configs;
-using Jotunn.Entities;
-using Jotunn.Managers;
-using UnityEngine;
+﻿using Jotunn.Managers;
 
-namespace LootGoblinsUtils.Creatures;
+namespace LootGoblinsUtils.Conquest.Creatures;
 
 public static class CreatureDB
 {

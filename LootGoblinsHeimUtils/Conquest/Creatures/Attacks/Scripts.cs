@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LootGoblinsUtils.Creatures.Attacks;
+namespace LootGoblinsUtils.Conquest.Creatures.Attacks;
 
 public class Scripts
 {

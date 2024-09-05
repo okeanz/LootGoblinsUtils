@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using LootGoblinsUtils.Creatures;
+using LootGoblinsUtils.Conquest.Creatures;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 

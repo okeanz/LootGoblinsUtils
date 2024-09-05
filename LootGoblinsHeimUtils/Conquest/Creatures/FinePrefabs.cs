@@ -1,8 +1,8 @@
 ﻿using Jotunn.Managers;
-using LootGoblinsUtils.Creatures.Attacks;
+using LootGoblinsUtils.Conquest.Creatures.Attacks;
 using UnityEngine;
 
-namespace LootGoblinsUtils.Creatures;
+namespace LootGoblinsUtils.Conquest.Creatures;
 
 public static class FinePrefabs
 {

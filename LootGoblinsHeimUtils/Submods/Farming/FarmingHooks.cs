@@ -42,7 +42,13 @@ public static class FarmingHooks
     {
         static bool Prefix(Fermenter __instance)
         {
-            return !__instance.gameObject.name.Contains("_LG");
+            if (__instance.gameObject.name.Contains("_LG"))
+            {
+                __instance.m_hasRoof = true;
+                return false;
+            }
+
+            return true;
         }
     }
 }

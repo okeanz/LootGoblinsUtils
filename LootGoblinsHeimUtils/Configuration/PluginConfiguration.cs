@@ -9,13 +9,23 @@ public static class PluginConfiguration
     public static ConfigEntry<float> PlantGrowMinDuration;
     public static ConfigEntry<float> PlantGrowMaxDuration;
     public static ConfigEntry<bool> ReliableBlockToggle;
+    public static ConfigEntry<bool> DisableBedRespawnToggle;
+    public static ConfigEntry<bool> FatalProtectionToggle;
+    public static ConfigEntry<float> FPNormalDefencePercent;
+    public static ConfigEntry<float> FPNormalDefenceBlockingPercent;
+    public static ConfigEntry<float> FPNormalDefenceShieldPercent;
+    public static ConfigEntry<float> FPNormalDefenceShieldBlockingPercent;
+    public static ConfigEntry<float> FPCriticalRatio;
+    public static ConfigEntry<float> FPArmorToDurabilityRatio;
+    public static ConfigEntry<float> FPBlockPowerToDurabilityRatio;
+    public static ConfigEntry<float> FPBlockPowerMultiplier;
 
     public static ConquestConfiguration Conquest;
     
     public static void InitConfigs(BaseUnityPlugin plugin)
     {
-        Conquest = new ConquestConfiguration(plugin);
-        Conquest.InitConfigs();
+        // Conquest = new ConquestConfiguration(plugin);
+        // Conquest.InitConfigs();
         var isAdminOnly = new ConfigurationManagerAttributes {IsAdminOnly = true};
         const string section = "Defaults";
         FertilizingDuration = plugin.Config.Bind(
@@ -57,6 +67,107 @@ public static class PluginConfiguration
                 null,
                 isAdminOnly)
         );
+        
+        DisableBedRespawnToggle = plugin.Config.Bind(
+            section,
+            "DisableBedRespawnToggle",
+            true,
+            new ConfigDescription(
+                "Во включенном состоянии игрок воскрешается только у алтаря",
+                null,
+                isAdminOnly)
+        );
+        
+        const string fatalSection = "Fatal Protection";
+        
+        FatalProtectionToggle = plugin.Config.Bind(
+            fatalSection,
+            "FatalProtectionToggle",
+            true,
+            new ConfigDescription(
+                "Включить систему защиты от смертельных ударов",
+                null,
+                isAdminOnly)
+        );
+        
+        FPNormalDefencePercent = plugin.Config.Bind(
+            fatalSection,
+            "FPNormalDefencePercent",
+            0.6f,
+            new ConfigDescription(
+                "Предельный урон от максимального хп без условий",
+                new AcceptableValueRange<float>(0, 1f),
+                isAdminOnly)
+        );
+        
+        FPNormalDefenceBlockingPercent = plugin.Config.Bind(
+            fatalSection,
+            "FPNormalDefenceBlockingPercent",
+            0.45f,
+            new ConfigDescription(
+                "Предельный урон от максимального хп при блокировании",
+                new AcceptableValueRange<float>(0, 1f),
+                isAdminOnly)
+        );
+        
+        FPNormalDefenceShieldPercent = plugin.Config.Bind(
+            fatalSection,
+            "FPNormalDefenceShieldPercent",
+            0.5f,
+            new ConfigDescription(
+                "Предельный урон от максимального хп при ношении щита",
+                new AcceptableValueRange<float>(0, 1f),
+                isAdminOnly)
+        );
+        
+        FPNormalDefenceShieldBlockingPercent = plugin.Config.Bind(
+            fatalSection,
+            "FPNormalDefenceShieldBlockingPercent",
+            0.35f,
+            new ConfigDescription(
+                "Предельный урон от максимального хп при ношении щита и блокировании",
+                new AcceptableValueRange<float>(0, 1f),
+                isAdminOnly)
+        );
+        
+        FPCriticalRatio = plugin.Config.Bind(
+            fatalSection,
+            "FPCriticalRatio",
+            2f,
+            new ConfigDescription(
+                "Предел от максимального здоровья после которого защита не сработает",
+                new AcceptableValueRange<float>(1, 10f),
+                isAdminOnly)
+        );
 
+        FPArmorToDurabilityRatio = plugin.Config.Bind(
+            fatalSection,
+            "FPArmorToDurabilityRatio",
+            30f,
+            new ConfigDescription(
+                "Прочность брони за единицу брони",
+                new AcceptableValueRange<float>(0.1f, 100f),
+                isAdminOnly)
+        );
+        
+        FPBlockPowerToDurabilityRatio = plugin.Config.Bind(
+            fatalSection,
+            "FPBlockPowerToDurabilityRatio",
+            10f,
+            new ConfigDescription(
+                "Прочность щитов за единицу брони",
+                new AcceptableValueRange<float>(0.1f, 100f),
+                isAdminOnly)
+        );
+        
+        FPBlockPowerMultiplier = plugin.Config.Bind(
+            fatalSection,
+            "FPBlockPowerMultiplier",
+            2f,
+            new ConfigDescription(
+                "Множитель силы блокирования",
+                new AcceptableValueRange<float>(0.1f, 100f),
+                isAdminOnly)
+        );
     }
 }

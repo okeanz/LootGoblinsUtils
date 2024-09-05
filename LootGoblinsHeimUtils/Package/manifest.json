@@ -1,11 +1,10 @@
 ﻿{
   "name": "LootGoblinsHeimUtils",
   "description": "",
-  "version_number": "1.0.0",
-  "website_url": "",
+  "version_number": "2.0.0",
+  "website_url": "https://github.com/okeanz/LootGoblinsUtils",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2202",
-    "ValheimModding-Jotunn-2.15.2",
-    "ASharpPen-Spawn_That-1.2.8"
+    "ValheimModding-Jotunn-2.15.2"
   ]
 }
