@@ -19,6 +19,7 @@ public static class PluginConfiguration
     public static ConfigEntry<float> FPArmorToDurabilityRatio;
     public static ConfigEntry<float> FPBlockPowerToDurabilityRatio;
     public static ConfigEntry<float> FPBlockPowerMultiplier;
+    public static ConfigEntry<float> FPEquipmentDamageMultiplier;
 
     public static ConquestConfiguration Conquest;
     
@@ -153,9 +154,9 @@ public static class PluginConfiguration
         FPBlockPowerToDurabilityRatio = plugin.Config.Bind(
             fatalSection,
             "FPBlockPowerToDurabilityRatio",
-            10f,
+            15f,
             new ConfigDescription(
-                "Прочность щитов за единицу брони",
+                "Прочность оружия и щитов за единицу силы блокирования",
                 new AcceptableValueRange<float>(0.1f, 100f),
                 isAdminOnly)
         );
@@ -166,6 +167,16 @@ public static class PluginConfiguration
             2f,
             new ConfigDescription(
                 "Множитель силы блокирования",
+                new AcceptableValueRange<float>(0.1f, 100f),
+                isAdminOnly)
+        );
+        
+        FPEquipmentDamageMultiplier = plugin.Config.Bind(
+            fatalSection,
+            "FPEquipmentDamageMultiplier",
+            2f,
+            new ConfigDescription(
+                "Множитель урона по предметам при срабатывании защиты",
                 new AcceptableValueRange<float>(0.1f, 100f),
                 isAdminOnly)
         );

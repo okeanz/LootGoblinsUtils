@@ -180,6 +180,7 @@
     <Compile Include="Utils\CustomPieceExtensions.cs" />
     <Compile Include="Utils\GameObjectExtensions.cs" />
     <Compile Include="Utils\Loader.cs" />
+    <Compile Include="Utils\Math.cs" />
     <Compile Include="Utils\MonoExtensions.cs" />
     <Compile Include="Utils\PieceEntry.cs" />
     <Compile Include="Utils\SlowMono.cs" />
