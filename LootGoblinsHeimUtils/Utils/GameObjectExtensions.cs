@@ -73,4 +73,25 @@ public static class GameObjectExtensions
     {
         return piece.name.Contains("(Clone)");
     }
+    
+    public static List<Player> GetPlayersInRadius(Vector3 point, float range)
+    {
+        List<Player> players = new();
+        foreach (Player player in Player.GetAllPlayers())
+        {
+            if (DistanceXZ(player.transform.position, point) < range)
+            {
+                players.Add(player);
+            }
+        }
+
+        return players;
+    }
+    
+    public static float DistanceXZ(Vector3 v0, Vector3 v1)
+    {
+        double num1 = (double) v1.x - (double) v0.x;
+        float num2 = v1.z - v0.z;
+        return Mathf.Sqrt((float) (num1 * num1 + (double) num2 * (double) num2));
+    }
 }

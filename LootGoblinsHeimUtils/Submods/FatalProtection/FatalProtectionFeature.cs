@@ -12,7 +12,7 @@ public static class FatalProtectionFeature
 {
     public static void Init()
     {
-        if (!PluginConfiguration.FatalProtectionToggle.Value) return;
+        if (!FatalProtectionConfiguration.FatalProtectionToggle.Value) return;
 
         ItemManager.OnItemsRegistered += ItemManagerOnOnItemsRegistered;
     }
@@ -65,9 +65,9 @@ public static class FatalProtectionFeature
                 if (_armor.Contains(itemType) && haveDurability)
                 {
                     var targetArmor = item.m_itemData.m_shared.m_armor *
-                                      PluginConfiguration.FPArmorToDurabilityRatio.Value;
+                                      FatalProtectionConfiguration.FPArmorToDurabilityRatio.Value;
                     var targetArmorPerLevel = item.m_itemData.m_shared.m_armorPerLevel *
-                                              PluginConfiguration.FPArmorToDurabilityRatio.Value;
+                                              FatalProtectionConfiguration.FPArmorToDurabilityRatio.Value;
                     item.m_itemData.m_shared.m_maxDurability =
                         targetArmor > item.m_itemData.m_shared.m_maxDurability
                             ? item.m_itemData.m_shared.m_maxDurability
@@ -81,12 +81,12 @@ public static class FatalProtectionFeature
                 if (itemType == ItemDrop.ItemData.ItemType.Shield || _weapon.Contains(itemType))
                 {
                     var blockPower = item.m_itemData.m_shared.m_blockPower;
-                    item.m_itemData.m_shared.m_blockPower *= PluginConfiguration.FPBlockPowerMultiplier.Value;
-                    item.m_itemData.m_shared.m_blockPowerPerLevel *= PluginConfiguration.FPBlockPowerMultiplier.Value;
+                    item.m_itemData.m_shared.m_blockPower *= FatalProtectionConfiguration.FPBlockPowerMultiplier.Value;
+                    item.m_itemData.m_shared.m_blockPowerPerLevel *= FatalProtectionConfiguration.FPBlockPowerMultiplier.Value;
 
                     if (haveDurability)
                     {
-                        var targetDurability = blockPower * PluginConfiguration.FPBlockPowerToDurabilityRatio.Value;
+                        var targetDurability = blockPower * FatalProtectionConfiguration.FPBlockPowerToDurabilityRatio.Value;
                         var resultDurability = targetDurability > 100 ? targetDurability : targetDurability + 100;
 
                         item.m_itemData.m_shared.m_maxDurability =

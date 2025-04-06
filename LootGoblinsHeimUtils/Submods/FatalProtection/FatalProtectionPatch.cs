@@ -21,10 +21,10 @@ public class FatalProtectionPatch
 
         private static readonly Dictionary<PlayerStance, float> _stanceDamageLimit = new()
         {
-            {PlayerStance.NoWeapon, PluginConfiguration.FPNormalDefencePercent.Value},
-            {PlayerStance.WeaponBlocking, PluginConfiguration.FPNormalDefenceBlockingPercent.Value},
-            {PlayerStance.ShieldEquipped, PluginConfiguration.FPNormalDefenceShieldPercent.Value},
-            {PlayerStance.ShieldBlocking, PluginConfiguration.FPNormalDefenceShieldBlockingPercent.Value}
+            {PlayerStance.NoWeapon, FatalProtectionConfiguration.FPNormalDefencePercent.Value},
+            {PlayerStance.WeaponBlocking, FatalProtectionConfiguration.FPNormalDefenceBlockingPercent.Value},
+            {PlayerStance.ShieldEquipped, FatalProtectionConfiguration.FPNormalDefenceShieldPercent.Value},
+            {PlayerStance.ShieldBlocking, FatalProtectionConfiguration.FPNormalDefenceShieldBlockingPercent.Value}
         };
         
         private static bool DoPlayerHaveShield(Player player)
@@ -86,7 +86,7 @@ public class FatalProtectionPatch
         {
             Logger.LogDebug($"[FatalProtectionPatch] Damaging equipment: Excess damage: {damage}, stance: {stance}");
 
-            var residualDamage = damage * PluginConfiguration.FPEquipmentDamageMultiplier.Value;
+            var residualDamage = damage * FatalProtectionConfiguration.FPEquipmentDamageMultiplier.Value;
 
             var equipment = GetEquipment(player, stance);
             
@@ -109,7 +109,7 @@ public class FatalProtectionPatch
 
         public static void Prefix(Character __instance, ref float health)
         {
-            if (!PluginConfiguration.FatalProtectionToggle.Value) return;
+            if (!FatalProtectionConfiguration.FatalProtectionToggle.Value) return;
             if (__instance != Player.m_localPlayer) return;
 
             var player = Player.m_localPlayer;
@@ -123,14 +123,14 @@ public class FatalProtectionPatch
             var ratio = damage / maxHp;
 
 
-            if (ratio > PluginConfiguration.FPCriticalRatio.Value)
+            if (ratio > FatalProtectionConfiguration.FPCriticalRatio.Value)
             {
                 Logger.LogDebug(
-                    $"[FatalProtectionPatch]: Cant save you. ratio: {ratio} > {PluginConfiguration.FPCriticalRatio.Value}");
+                    $"[FatalProtectionPatch]: Cant save you. ratio: {ratio} > {FatalProtectionConfiguration.FPCriticalRatio.Value}");
                 return;
             }
 
-            if (ratio <= PluginConfiguration.FPNormalDefencePercent.Value) return;
+            if (ratio <= FatalProtectionConfiguration.FPNormalDefencePercent.Value) return;
 
 
             var stance = GetCurrentStance(player);

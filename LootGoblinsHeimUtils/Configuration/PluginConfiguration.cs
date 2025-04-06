@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
+using LootGoblinsUtils.Submods.Armor;
 
 namespace LootGoblinsUtils.Configuration;
 
@@ -10,24 +11,19 @@ public static class PluginConfiguration
     public static ConfigEntry<float> PlantGrowMaxDuration;
     public static ConfigEntry<bool> ReliableBlockToggle;
     public static ConfigEntry<bool> DisableBedRespawnToggle;
-    public static ConfigEntry<bool> FatalProtectionToggle;
-    public static ConfigEntry<float> FPNormalDefencePercent;
-    public static ConfigEntry<float> FPNormalDefenceBlockingPercent;
-    public static ConfigEntry<float> FPNormalDefenceShieldPercent;
-    public static ConfigEntry<float> FPNormalDefenceShieldBlockingPercent;
-    public static ConfigEntry<float> FPCriticalRatio;
-    public static ConfigEntry<float> FPArmorToDurabilityRatio;
-    public static ConfigEntry<float> FPBlockPowerToDurabilityRatio;
-    public static ConfigEntry<float> FPBlockPowerMultiplier;
-    public static ConfigEntry<float> FPEquipmentDamageMultiplier;
+    public static ConfigEntry<bool> EnableCombatOwnerToggle;
+    public static ConfigEntry<bool> EnableEventCreatureDropsToggle;
+    public static ConfigEntry<bool> EnableEventReward;
+    public static ConfigEntry<int> EventRewardMultiplier;
 
     public static ConquestConfiguration Conquest;
     
     public static void InitConfigs(BaseUnityPlugin plugin)
     {
-        // Conquest = new ConquestConfiguration(plugin);
-        // Conquest.InitConfigs();
         var isAdminOnly = new ConfigurationManagerAttributes {IsAdminOnly = true};
+        FatalProtectionConfiguration.Init(plugin, isAdminOnly);
+        ArmorFeatureConfiguration.Init(plugin, isAdminOnly);
+        
         const string section = "Defaults";
         FertilizingDuration = plugin.Config.Bind(
             section,
@@ -79,105 +75,43 @@ public static class PluginConfiguration
                 isAdminOnly)
         );
         
-        const string fatalSection = "Fatal Protection";
-        
-        FatalProtectionToggle = plugin.Config.Bind(
-            fatalSection,
-            "FatalProtectionToggle",
-            true,
+        EnableCombatOwnerToggle = plugin.Config.Bind(
+            "Feature Combat Owner",
+            "EnableCombatOwnerToggle",
+            false,
             new ConfigDescription(
-                "Включить систему защиты от смертельных ударов",
+                "Меняет владельца атакующего моба на его цель. Облегчает парирование и уклонение в мультиплеере",
                 null,
                 isAdminOnly)
         );
         
-        FPNormalDefencePercent = plugin.Config.Bind(
-            fatalSection,
-            "FPNormalDefencePercent",
-            0.6f,
+        EnableEventCreatureDropsToggle = plugin.Config.Bind(
+            "Feature Event Creature",
+            "EnableEventCreatureDropsToggle",
+            true,
             new ConfigDescription(
-                "Предельный урон от максимального хп без условий",
-                new AcceptableValueRange<float>(0, 1f),
+                "Отключает дроп с ивентовых мобов",
+                null,
                 isAdminOnly)
         );
         
-        FPNormalDefenceBlockingPercent = plugin.Config.Bind(
-            fatalSection,
-            "FPNormalDefenceBlockingPercent",
-            0.45f,
+        EnableEventReward = plugin.Config.Bind(
+            "Feature Event Creature",
+            "EnableEventReward",
+            true,
             new ConfigDescription(
-                "Предельный урон от максимального хп при блокировании",
-                new AcceptableValueRange<float>(0, 1f),
+                "Спаун сундуков с наградой",
+                null,
                 isAdminOnly)
         );
         
-        FPNormalDefenceShieldPercent = plugin.Config.Bind(
-            fatalSection,
-            "FPNormalDefenceShieldPercent",
-            0.5f,
+        EventRewardMultiplier = plugin.Config.Bind(
+            "Feature Event Creature",
+            "EventRewardMultiplier",
+            200,
             new ConfigDescription(
-                "Предельный урон от максимального хп при ношении щита",
-                new AcceptableValueRange<float>(0, 1f),
-                isAdminOnly)
-        );
-        
-        FPNormalDefenceShieldBlockingPercent = plugin.Config.Bind(
-            fatalSection,
-            "FPNormalDefenceShieldBlockingPercent",
-            0.35f,
-            new ConfigDescription(
-                "Предельный урон от максимального хп при ношении щита и блокировании",
-                new AcceptableValueRange<float>(0, 1f),
-                isAdminOnly)
-        );
-        
-        FPCriticalRatio = plugin.Config.Bind(
-            fatalSection,
-            "FPCriticalRatio",
-            2f,
-            new ConfigDescription(
-                "Предел от максимального здоровья после которого защита не сработает",
-                new AcceptableValueRange<float>(1, 10f),
-                isAdminOnly)
-        );
-
-        FPArmorToDurabilityRatio = plugin.Config.Bind(
-            fatalSection,
-            "FPArmorToDurabilityRatio",
-            30f,
-            new ConfigDescription(
-                "Прочность брони за единицу брони",
-                new AcceptableValueRange<float>(0.1f, 100f),
-                isAdminOnly)
-        );
-        
-        FPBlockPowerToDurabilityRatio = plugin.Config.Bind(
-            fatalSection,
-            "FPBlockPowerToDurabilityRatio",
-            15f,
-            new ConfigDescription(
-                "Прочность оружия и щитов за единицу силы блокирования",
-                new AcceptableValueRange<float>(0.1f, 100f),
-                isAdminOnly)
-        );
-        
-        FPBlockPowerMultiplier = plugin.Config.Bind(
-            fatalSection,
-            "FPBlockPowerMultiplier",
-            2f,
-            new ConfigDescription(
-                "Множитель силы блокирования",
-                new AcceptableValueRange<float>(0.1f, 100f),
-                isAdminOnly)
-        );
-        
-        FPEquipmentDamageMultiplier = plugin.Config.Bind(
-            fatalSection,
-            "FPEquipmentDamageMultiplier",
-            2f,
-            new ConfigDescription(
-                "Множитель урона по предметам при срабатывании защиты",
-                new AcceptableValueRange<float>(0.1f, 100f),
+                "Множитель награды за событие",
+                new AcceptableValueRange<int>(0, 10000),
                 isAdminOnly)
         );
     }

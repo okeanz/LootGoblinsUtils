@@ -7,6 +7,7 @@ using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
 using LootGoblinsUtils.Configuration;
+using LootGoblinsUtils.Submods.Armor;
 using LootGoblinsUtils.Submods.Farming;
 using LootGoblinsUtils.Submods.FatalProtection;
 using LootGoblinsUtils.Utils;
@@ -22,7 +23,7 @@ namespace LootGoblinsUtils
     {
         public const string PluginGuid = "com.lootgoblinsheim.utils";
         public const string PluginName = "LootGoblinsHeimUtils";
-        public const string PluginVersion = "2.2.0";
+        public const string PluginVersion = "2.2.4";
 
         private readonly Harmony _harmony = new(PluginGuid);
 
@@ -42,6 +43,7 @@ namespace LootGoblinsUtils
             PluginConfiguration.InitConfigs(this);
             FarmingSetup.Init();
             FatalProtectionFeature.Init();
+            ArmorFeature.Init();
             
             // Blueprints.Init();
             /*if(PluginConfiguration.Conquest.ConquestFeature.Value)

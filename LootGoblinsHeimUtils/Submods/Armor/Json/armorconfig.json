@@ -1,0 +1,235 @@
+{
+  "bm": {
+    "lightSetEffect": {
+      "modifyAttackDamage": 1.15,
+      "runStaminaModifier": -0.05,
+      "jumpStaminaModifier": -0.05,
+      "regenStaminaModifier": 1.1,
+      "carryWeightAdd": 40
+    },
+    "mediumSetEffect": {
+      "modifyAttackDamage": 1.1,
+      "regenStaminaModifier": 1.1,
+      "regenHealthModifier": 1.1,
+      "movementSpeedModifier": 0.1
+    },
+    "heavySetEffect": {
+      "regenHealthModifier" : 1.2,
+      "movementSpeedModifier" : 0.1,
+      "skillLevel1" : 6,
+      "skillLevel1Value" : 20
+    },
+    "heavyArmorMod": {
+      "movement": -0.10,
+      "blockStamina": -0.1,
+      "armor": 32,
+      "armorPerLevel": 3
+    },
+    "mediumArmorMod": {
+      "movement": -0.05,
+      "armor": 27,
+      "armorPerLevel": 2
+    },
+    "lightArmorMod": {
+      "armor": 22,
+      "armorPerLevel": 2
+    },
+    "heavyArmorRecipe": [
+      {
+        "item": "BlackMetal",
+        "amount": 20,
+        "amountPerLevel": 10
+      },
+      {
+        "item": "LoxPelt",
+        "amount": 5,
+        "amountPerLevel": 2
+      }
+    ],
+    "mediumArmorRecipe": [
+      {
+        "item": "BlackMetal",
+        "amount": 10,
+        "amountPerLevel": 5
+      },
+      {
+        "item": "LoxPelt",
+        "amount": 10,
+        "amountPerLevel": 5
+      },
+      {
+        "item": "LinenThread",
+        "amount": 5,
+        "amountPerLevel": 2
+      }
+    ],
+    "lightArmorRecipe": [
+      {
+        "item": "LoxPelt",
+        "amount": 10,
+        "amountPerLevel": 5
+      },
+      {
+        "item": "LinenThread",
+        "amount": 20,
+        "amountPerLevel": 10
+      }
+    ],
+    "setList": [
+      {
+        "head": "bphelm",
+        "chest": "bpchest",
+        "legs": "bplegs",
+        "type": "heavy",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblinBrute",
+          "amount": 1,
+          "amountPerLevel": 1
+        }
+      },
+      {
+        "head": "sven",
+        "chest": "svenchest",
+        "legs": "svenlegs",
+        "type": "heavy",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblinBrute",
+          "amount": 1,
+          "amountPerLevel": 1
+        }
+      },
+      {
+        "head": "loxhunthelm",
+        "chest": "loxhuntchest",
+        "legs": "loxhuntlegs",
+        "type": "heavy",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblinBrute",
+          "amount": 1,
+          "amountPerLevel": 1
+        }
+      },
+      {
+        "head": "bearhelm",
+        "chest": "bearchest",
+        "legs": "bearlegs",
+        "type": "heavy",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblinBrute",
+          "amount": 1,
+          "amountPerLevel": 1
+        }
+      },
+      {
+        "head": "HelmetBold_TW",
+        "chest": "ArmorBoldChest_TW",
+        "legs": "ArmorBoldLegs_TW",
+        "type": "heavy",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblinBrute",
+          "amount": 1,
+          "amountPerLevel": 1
+        }
+      },
+      {
+        "head": "ss_barbhelm",
+        "chest": "ss_barbchest",
+        "legs": "ss_barblegs",
+        "type": "medium",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblin",
+          "amount": 5,
+          "amountPerLevel": 2
+        }
+      },
+      {
+        "head": "HelmetVidarBM_TW",
+        "chest": "ArmorVidarBMChest_TW",
+        "legs": "ArmorVidarBMLegs_TW",
+        "type": "medium",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblin",
+          "amount": 5,
+          "amountPerLevel": 2
+        }
+      },
+      {
+        "head": "HelmetWarriorBM_TW",
+        "chest": "ArmorWarriorBMChest_TW",
+        "legs": "ArmorWarriorBMLegs_TW",
+        "type": "medium",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblin",
+          "amount": 5,
+          "amountPerLevel": 2
+        }
+      },
+      {
+        "head": "HelmetVigorousBM_TW",
+        "chest": "ArmorVigorousBMChest_TW",
+        "legs": "ArmorVigorousBMLegs_TW",
+        "type": "medium",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblin",
+          "amount": 5,
+          "amountPerLevel": 2
+        }
+      },
+      {
+        "head": "HelmetPadded",
+        "chest": "ArmorPaddedCuirass",
+        "legs": "ArmorPaddedGreaves",
+        "type": "medium",
+        "headCustomRecipeItem": {
+          "item": "TrophyGoblin",
+          "amount": 5,
+          "amountPerLevel": 2
+        }
+      },
+      {
+        "head": "HelmetFenrirBM_TW",
+        "chest": "ArmorFenrirBMChest_TW",
+        "legs": "ArmorFenrirBMLegs_TW",
+        "type": "light",
+        "headCustomRecipeItem": {
+          "item": "TrophyDeathsquito",
+          "amount": 5,
+          "amountPerLevel": 2
+        }
+      },
+      {
+        "head": "HelmetRogueBM_TW",
+        "chest": "ArmorRogueBMChest_TW",
+        "legs": "ArmorRogueBMLegs_TW",
+        "type": "light",
+        "headCustomRecipeItem": {
+          "item": "TrophyDeathsquito",
+          "amount": 5,
+          "amountPerLevel": 2
+        }
+      },
+      {
+        "head": "HelmetHunterBM_TW",
+        "chest": "ArmorHunterChestBM_TW",
+        "legs": "ArmorHunterLegsBM_TW",
+        "type": "light",
+        "headCustomRecipeItem": {
+          "item": "TrophyDeathsquito",
+          "amount": 5,
+          "amountPerLevel": 2
+        }
+      },
+      {
+        "head": "norahhelm",
+        "chest": "norahchest",
+        "legs": "norahlegs",
+        "type": "light",
+        "headCustomRecipeItem": {
+          "item": "TrophyDeathsquito",
+          "amount": 5,
+          "amountPerLevel": 2
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "definitions": {
+    "ArmorSetConfig": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "head": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "chest": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "legs": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "headCustomRecipeItem": {
+          "$ref": "#/definitions/RequirementConfigInner"
+        },
+        "chestCustomRecipeItem": {
+          "$ref": "#/definitions/RequirementConfigInner"
+        },
+        "legsCustomRecipeItem": {
+          "$ref": "#/definitions/RequirementConfigInner"
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "ArmorTierConfig": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "lightSetEffect": {
+          "$ref": "#/definitions/OverrideModifiers"
+        },
+        "mediumSetEffect": {
+          "$ref": "#/definitions/OverrideModifiers"
+        },
+        "heavySetEffect": {
+          "$ref": "#/definitions/OverrideModifiers"
+        },
+        "lightBurdenEffect": {
+          "$ref": "#/definitions/OverrideModifiers"
+        },
+        "mediumBurdenEffect": {
+          "$ref": "#/definitions/OverrideModifiers"
+        },
+        "heavyBurdenEffect": {
+          "$ref": "#/definitions/OverrideModifiers"
+        },
+        "heavyArmorMod": {
+          "$ref": "#/definitions/OverrideModifiers-1"
+        },
+        "mediumArmorMod": {
+          "$ref": "#/definitions/OverrideModifiers-1"
+        },
+        "lightArmorMod": {
+          "$ref": "#/definitions/OverrideModifiers-1"
+        },
+        "heavyArmorRecipe": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/RequirementConfigInner"
+          }
+        },
+        "mediumArmorRecipe": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/RequirementConfigInner"
+          }
+        },
+        "lightArmorRecipe": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/RequirementConfigInner"
+          }
+        },
+        "setList": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/ArmorSetConfig"
+          }
+        }
+      }
+    },
+    "OverrideModifiers": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "modifyAttackDamage": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "runStaminaModifier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "jumpStaminaModifier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "regenStaminaModifier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "regenHealthModifier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "movementSpeedModifier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "eitrRegenMultiplier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "noiseModifier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "stealthModifier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "carryWeightAdd": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "skillLevel1": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "enum": [
+            null,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            100,
+            101,
+            102,
+            103,
+            104,
+            110,
+            999
+          ]
+        },
+        "skillLevel1Value": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "OverrideModifiers-1": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "movement": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "blockStamina": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "armor": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "armorPerLevel": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "RequirementConfigInner": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "item": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer"
+        },
+        "amountPerLevel": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "item"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "silver": {
+      "$ref": "#/definitions/ArmorTierConfig"
+    },
+    "bm": {
+      "$ref": "#/definitions/ArmorTierConfig"
+    }
+  }
+}

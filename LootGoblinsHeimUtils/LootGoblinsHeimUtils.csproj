@@ -99,6 +99,7 @@
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
@@ -119,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConquestConfiguration.cs" />
+    <Compile Include="Configuration\FatalProtectionConfiguration.cs" />
     <Compile Include="Configuration\PluginConfiguration.cs" />
     <Compile Include="Conquest\Components\Spawners\Boar\SpawnerBoarsRaid.cs" />
     <Compile Include="Conquest\Components\Spawners\Boar\SpawnerBoarsT1.cs" />
@@ -153,6 +155,14 @@
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="LootGoblinsHeimUtilsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Submods\Armor\ArmorFeature.cs" />
+    <Compile Include="Submods\Armor\ArmorFeatureConfig.cs" />
+    <Compile Include="Submods\Armor\ArmorFeatureConfiguration.cs" />
+    <Compile Include="Submods\Armor\ArmorEffectGenerator.cs" />
+    <Compile Include="Submods\Armor\EffectOverrides.cs" />
+    <Compile Include="Submods\Armor\ItemOverrides.cs" />
+    <Compile Include="Submods\CombatOwner\CombatOwnerFeature.cs" />
+    <Compile Include="Submods\EventCreatures\EventCreaturesFeature.cs" />
     <Compile Include="Submods\Farming\FarmingSetup.cs" />
     <Compile Include="Submods\Farming\FarmingHooks.cs" />
     <Compile Include="Submods\Farming\HoePatch.cs" />
@@ -182,6 +192,7 @@
     <Compile Include="Utils\Loader.cs" />
     <Compile Include="Utils\Math.cs" />
     <Compile Include="Utils\MonoExtensions.cs" />
+    <Compile Include="Utils\PathUtil.cs" />
     <Compile Include="Utils\PieceEntry.cs" />
     <Compile Include="Utils\SlowMono.cs" />
     <Compile Include="Utils\StringExtension.cs" />
@@ -197,8 +208,18 @@
     <None Include="Package\manifest.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\statusiconwhite.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Submods\Armor\Json\armorFeatureConfig.model.json" />
     <EmbeddedResource Include="Conquest\Locations\Blueprints\Relicv_Raven_V2.blueprint" />
     <Content Include="Package\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ContentWithTargetPath Include="Submods\Armor\Json\armorconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TargetPath>armorconfig.json</TargetPath>
+    </ContentWithTargetPath>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

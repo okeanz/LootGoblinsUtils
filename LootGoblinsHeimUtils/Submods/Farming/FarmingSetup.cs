@@ -15,7 +15,7 @@ public static class FarmingSetup
 
     private static void ObjectDbLoaded()
     {
-        HoePatch.Patch();
+        // HoePatch.Patch();
     }
 
     private static void Setup()
