@@ -45,7 +45,7 @@ public class ConquestGhost : SlowMono
         UpdateStep = 3f;
         _awakeTime = Time.time;
 
-        location = Location.m_allLocations.FirstOrDefault(x =>
+        location = Location.s_allLocations.FirstOrDefault(x =>
             Vector3.Distance(transform.position, x.transform.position) < 20f);
         if (location != null)
         {
@@ -74,7 +74,7 @@ public class ConquestGhost : SlowMono
     public override void SlowUpdate()
     {
         if (Time.time - _awakeTime < 5f) return;
-        location = Location.m_allLocations.FirstOrDefault(x =>
+        location = Location.s_allLocations.FirstOrDefault(x =>
             Vector3.Distance(transform.position, x.transform.position) < 20f);
         UpdateState();
         ProcessStates();
