@@ -3,11 +3,12 @@ using System.Linq;
 using Jotunn.Entities;
 using LootGoblinsUtils.Conquest.Pieces;
 using LootGoblinsUtils.Conquest.Pieces.Core;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace LootGoblinsUtils.Conquest.TerminalCommands;
 
-public class CoresList: ConsoleCommand
+public class CoresList : ConsoleCommand
 {
     public override string Name => "core_list";
 
@@ -17,8 +18,8 @@ public class CoresList: ConsoleCommand
     {
         try
         {
-            var conquestCores = Object.FindObjectsOfType<ConquestCore>()
-                .ToDictionary(x=> x, x=> (x.transform.position - Player.m_localPlayer.transform.position).magnitude)
+            var conquestCores = Object.FindObjectsByType<ConquestCore>(FindObjectsSortMode.None)
+                .ToDictionary(x => x, x => (x.transform.position - Player.m_localPlayer.transform.position).magnitude)
                 .OrderByDescending(kvp => kvp.Value);
 
             foreach (var conquestCore in conquestCores)
@@ -31,6 +32,5 @@ public class CoresList: ConsoleCommand
             Console.instance.Print(e.ToString());
             throw;
         }
-        
     }
 }

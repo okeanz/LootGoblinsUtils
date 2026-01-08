@@ -16,25 +16,32 @@ public static class ArmorFeatureConfiguration
 
     public static void Init(BaseUnityPlugin plugin, ConfigurationManagerAttributes isAdminOnly)
     {
-        SetupFileConfig();
-        
         const string section = "Armor Feature";
 
+        
+        
         ArmorFeatureToggle = plugin.Config.Bind(
             section,
             "ArmorFeatureToggle",
-            true,
+            false,
             new ConfigDescription(
                 "Включить генерацию классов брони",
                 null,
                 isAdminOnly)
         );
+
+        Logger.LogInfo($"ArmorFeatureToggle: {ArmorFeatureToggle.Value}");
+
+
+        if (ArmorFeatureToggle.Value == false) return;
+        
+        SetupFileConfig();
     }
 
     private static void SetupFileConfig()
     {
         var assemblyPath = PathUtil.PluginFolder;
-        
+
         FileSystemWatcher watcher = new FileSystemWatcher(assemblyPath);
         watcher.Changed += WatcherOnChanged;
         watcher.Filter = FileName;

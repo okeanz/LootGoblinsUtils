@@ -1,0 +1,25 @@
+{
+  "setList": [
+    {
+      "name": "leather_burst_set",
+      "displayName": "Порыв",
+      "parts": ["ArmorLeatherChest", "ArmorLeatherLegs", "HelmetLeather"],
+      "effectBinding": "burst_effect"
+    }
+  ],
+  "effectDescriptions": [
+    {
+      "name": "burst_effect",
+      "description": [
+        "\n<color=#FFD700><align=\"center\"><b>Порыв</b></align></color>",
+        "\n❖ За каждые 3 попадания по врагу",
+        "\n    • <color=#00abff>Burst</color>: <color=#80fa70><b>+10% скорости атаки на 4 сек.</b></color>",
+        "\n    • Складывается до 3-х раз",
+        "\n",
+        "\n💥 При промахе, паррировании, блоке, уклонении во время <color=#00abff>Burst</color>",
+        "\n    • <color=#ff4545><b>-50% регенерации выносливости на 3 сек.</b></color>",
+        "\n    • <color=#00abff>Burst</color> отключен на 3 сек."
+      ]
+    }
+  ]
+}

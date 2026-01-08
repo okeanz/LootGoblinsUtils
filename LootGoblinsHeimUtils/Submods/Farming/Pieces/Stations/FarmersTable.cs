@@ -32,16 +32,15 @@ public static class FarmersTable
     {
         LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("Russian", TableName, "Столик фермера");
         LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("English", TableName, "Farmers Table");
-        
+
         LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("Russian", PieceCategory, "Фермерство");
         LootGoblinsHeimUtilsPlugin.Localization.AddTranslation("English", PieceCategory, "Farming");
-        
+
         var pestlePrefab = PrefabManager.Instance.GetPrefab("cauldron_ext5_mortarandpestle");
         var pestleModel = pestlePrefab.FindDeepChild("new").gameObject;
         var farmersTableIcon = pestlePrefab.GetComponent<Piece>().m_icon;
 
-        PieceManager.Instance.AddPieceCategory(PieceTables.Hammer, PieceCategory);
-
+        PieceManager.Instance.AddPieceCategory(PieceCategory);
 
         var pc = new PieceConfig
         {
@@ -71,7 +70,7 @@ public static class FarmersTable
         var craftingStation = newPiece.PiecePrefab.GetComponent<CraftingStation>();
         craftingStation.m_name = TableName;
         craftingStation.m_showBasicRecipies = false;
-        
+
         PieceManager.Instance.AddPiece(newPiece);
     }
 }
