@@ -9,6 +9,8 @@ public static class EffectUI
 {
     private static GameObject _panel;
     private static Text _text;
+    
+    private  const string HPBarName = "MUI_HPBar";
 
     public static void InitUI()
     {
@@ -25,8 +27,8 @@ public static class EffectUI
             anchorMin: new Vector2(0.5f, 0.5f),
             anchorMax: new Vector2(0.5f, 0.5f),
             position: new Vector2(200f, 0f),
-            width: 200f,
-            height: 200f,
+            width: 300f,
+            height: 300f,
             draggable: true);
 
         _text = GUIManager.Instance.CreateText(
@@ -40,8 +42,8 @@ public static class EffectUI
             color: GUIManager.Instance.ValheimOrange,
             outline: true,
             outlineColor: Color.black,
-            width: 200f,
-            height: 200f,
+            width: 300f,
+            height: 300f,
             addContentSizeFitter: false).GetComponent<Text>();
     }
 

@@ -5,6 +5,12 @@
       "displayName": "Порыв",
       "parts": ["ArmorLeatherChest", "ArmorLeatherLegs", "HelmetLeather"],
       "effectBinding": "burst_effect"
+    },
+    {
+      "name": "boar_heavy_dodge_set",
+      "displayName": "Контр-удар",
+      "parts": ["chiefhelmboar", "chiefchest", "chieflegs"],
+      "effectBinding": "dodge_heavy"
     }
   ],
   "effectDescriptions": [
@@ -14,11 +20,25 @@
         "\n<color=#FFD700><align=\"center\"><b>Порыв</b></align></color>",
         "\n❖ За каждые 3 попадания по врагу",
         "\n    • <color=#00abff>Burst</color>: <color=#80fa70><b>+10% скорости атаки на 4 сек.</b></color>",
+        "\n    • +15% затрат выносливости на удар",
         "\n    • Складывается до 3-х раз",
         "\n",
         "\n💥 При промахе, паррировании, блоке, уклонении во время <color=#00abff>Burst</color>",
         "\n    • <color=#ff4545><b>-50% регенерации выносливости на 3 сек.</b></color>",
         "\n    • <color=#00abff>Burst</color> отключен на 3 сек."
+      ]
+    },
+    {
+      "name": "dodge_heavy",
+      "description": [
+        "\n<color=#FFD700><align=\"center\"><b>Контр-удар</b></align></color>",
+        "\n❖ За каждое успешное уклонение",
+        "\n    • <color=#00abff>Контр-удар</color>: <color=#80fa70><b>+15% к урону силовых атак на 10 сек.</b></color>",
+        "\n    • Счётчик складывается до 3-х раз",
+        "\n    • При силовой атаке применяются все стаки разом",
+        "\n",
+        "\n💥 После завершения бонуса или при промахе, паррировании, блоке или атаке",
+        "\n    • <color=#ff4545><b>Сбрасывает счётчик уклонений.</b></color>"
       ]
     }
   ]

@@ -8,7 +8,7 @@ namespace LootGoblinsUtils.Submods.ReactiveGear.GearSets.Hooks;
 public static class ItemTooltipPatch
 {
     private const string UpperLine =
-        "\n\n<color=#555555>\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e</color><indent=8%>";
+        "\n\n<color=#555555>\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e</color><margin=4%>";
 
     private const string LowerLine =
         "\n<color=#555555>\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f</color>";
@@ -41,7 +41,7 @@ public static class ItemTooltipPatch
         if (equipmentCounter != null)
             sb.Append($"\n\nНадето: {equipmentCounter.EquippedCount} из {equipmentCounter.MaxCount}");
 
-        sb.Append("</indent>");
+        sb.Append("</margin>");
         sb.Append(LowerLine);
 
 

@@ -37,7 +37,7 @@ namespace Units
         }
 
         [TestCase(CombatEventType.MissConfirmed)]
-        [TestCase(CombatEventType.Dodge)]
+        [TestCase(CombatEventType.DodgeAction)]
         [TestCase(CombatEventType.Block)]
         [TestCase(CombatEventType.Parry)]
         public void TriggerEvents_WhenMomentumActive_StartOverheat_AndResetMomentum(CombatEventType trigger)

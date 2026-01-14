@@ -10,6 +10,7 @@ public sealed class PlayerRuntime
     public readonly PlayerModifiers Mods = new();
     public readonly BurstMomentumEffect.MomentumRuntime MomentumRuntime = new();
     public readonly BurstOverheatEffect.BurstOverheatRuntime OverheatRuntime = new();
+    public readonly DodgeHeavy.DodgeHeavyRuntime DodgeHeavyRuntime = new();
 
     public bool CanGainMomentum(float now)
         => !OverheatRuntime.HasOverheat(now);
@@ -19,9 +20,6 @@ public sealed class PlayerRuntime
 
     public override string ToString()
     {
-        return
-            $"stacks: {MomentumRuntime.MomentumStacks}, " +
-            $"timeLeft: {Math.Round(Mathf.Max(0, MomentumRuntime.MomentumExpiresAt - Time.time), 2)}, " +
-            $"overheatLeft: {Math.Round(Mathf.Max(0, OverheatRuntime.OverheatExpiresAt - Time.time), 2)}";
+        return $"dodge: {Newtonsoft.Json.JsonConvert.SerializeObject(DodgeHeavyRuntime)}";
     }
 }

@@ -22,7 +22,11 @@ public static class EffectManager
 
     public static void Init()
     {
-        RegisterEffects(EffectBindings.EffectsMap[EffectNames.Burst]);
+        foreach (var effectsMapValue in EffectBindings.EffectsMap.Values)
+        {
+            RegisterEffects(effectsMapValue);
+        }
+
         RegisterMiddleware(new HitMissMiddleware());
 
         EffectUI.InitUI();
@@ -60,6 +64,10 @@ public static class EffectManager
 
     public static void Handle(CombatEvent combatEvent)
     {
+        if (combatEvent.Type != CombatEventType.Tick)
+        {
+            Logger.LogInfo($"Received combat combat event: {combatEvent.Type.ToString()}");
+        }
         IEnumerable<CombatEvent> stream = new[] { combatEvent };
 
         foreach (var mw in Middlewares)

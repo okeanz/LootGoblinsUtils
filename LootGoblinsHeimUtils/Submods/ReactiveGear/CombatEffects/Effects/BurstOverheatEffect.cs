@@ -9,7 +9,7 @@ public class BurstOverheatEffect : ICombatEffect
 
     public const float OverheatDuration = 3.0f;
 
-    public const float OverheatRegenMult = 0.5f;
+    public const float OverheatRegenMult = 0.01f;
 
     public void OnEvent(PlayerRuntime playerRuntime, CombatEvent combatEvent)
     {
@@ -19,7 +19,7 @@ public class BurstOverheatEffect : ICombatEffect
         switch (combatEvent.Type)
         {
             case CombatEventType.MissConfirmed:
-            case CombatEventType.Dodge:
+            case CombatEventType.DodgeAction:
             case CombatEventType.Block:
             case CombatEventType.Parry:
                 if (playerRuntime.HasMomentum(now))

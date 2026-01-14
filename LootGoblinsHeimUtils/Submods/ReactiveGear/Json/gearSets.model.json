@@ -34,7 +34,8 @@
         "effectBinding": {
           "type": "string",
           "enum": [
-            "burst_effect"
+            "burst_effect",
+            "dodge_heavy"
           ]
         }
       }
@@ -49,7 +50,8 @@
         "name": {
           "type": "string",
           "enum": [
-            "burst_effect"
+            "burst_effect",
+            "dodge_heavy"
           ]
         },
         "description": {
